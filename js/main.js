@@ -81,11 +81,28 @@ elForm.addEventListener("input", (evt) => {
 
   if (elInput.value !== "") {
     compareInput();
-    //     compareInputRegion();
-    //     compareInputCapital();
-    //     compareInputPopulationNum();
+    compareInputRegion();
+    compareInputCapital();
+    compareInputPopulationNum();
   }
 
   // Executes to the DOM
 });
 elForm.addEventListener("submit", (evt) => evt.preventDefault());
+
+// Select
+
+async function getSelectValues() {
+  let response = await fetch(
+    `https://restcountries.com/v3.1/region/${elSelect.value}`
+  );
+  let data = await response.json();
+  renderCountry(data, elList);
+}
+getSelectValues();
+
+elSelect.addEventListener("change", () => {
+  if (elSelect.value !== "") {
+    getSelectValues();
+  }
+});
