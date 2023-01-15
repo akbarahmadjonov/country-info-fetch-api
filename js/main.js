@@ -52,38 +52,11 @@ async function compareInput() {
   renderCountry(data, elList);
 }
 
-async function compareInputRegion() {
-  let response = await fetch(
-    `https://restcountries.com/v3.1/region/${elInput.value}`
-  );
-  let data = await response.json();
-  renderCountry(data, elList);
-}
-
-async function compareInputCapital() {
-  let response = await fetch(
-    `https://restcountries.com/v3.1/capital/${elInput.value}`
-  );
-  let data = await response.json();
-  renderCountry(data, elList);
-}
-
-async function compareInputPopulationNum() {
-  let response = await fetch(
-    `https://restcountries.com/v3.1/all/population/${elInput.value}`
-  );
-  let data = await response.json();
-  renderCountry(data, elList);
-}
-
-elForm.addEventListener("input", (evt) => {
+elForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
   if (elInput.value !== "") {
     compareInput();
-    compareInputRegion();
-    compareInputCapital();
-    compareInputPopulationNum();
   }
 
   // Executes to the DOM
@@ -99,7 +72,6 @@ async function getSelectValues() {
   let data = await response.json();
   renderCountry(data, elList);
 }
-getSelectValues();
 
 elSelect.addEventListener("change", () => {
   if (elSelect.value !== "") {
